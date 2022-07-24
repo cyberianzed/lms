@@ -144,7 +144,7 @@ if ($_SESSION['RollNo']) {
 
 <div class="footer">
             <div class="container">
-                <b class="copyright">&copy; 2018 Library Management System </b>All rights reserved.
+                <b class="copyleft">&copy; 2022 Library Management System </b> <br>&nbsp;&nbsp; _The J's_
             </div>
         </div>
         

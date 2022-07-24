@@ -81,7 +81,8 @@ require('dbconn.php');
 	</div>
 
 	<div class="footer w3layouts agileits">	
-	<p> &copy; Created by Jose..Bakki thendikal mungi </p></p>
+	<p> &copy; Created by _The J's_ </p></p>
+	<p> and _The G_ </p></p>
 
 	</div>
 
