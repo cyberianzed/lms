@@ -3,12 +3,7 @@ require('dbconn.php');
 ?>
 
 <?php 
-$rno=$_SESSION['RollNo'];
-if ($rno) {
-    $sql="select COUNT(*) from LMS.record WHERE RollNo = '$rno'";
-
-    $result=$conn->query($sql);
-    $count=mysqli_fetch_assoc($result)['COUNT(*)'];
+if ($_SESSION['RollNo']) {
     ?>
 
 <!DOCTYPE html>
@@ -95,6 +90,7 @@ if ($rno) {
 
                                     $result=$conn->query($sql);
                                     $rowcount=mysqli_num_rows($result);
+
                                     if(!($rowcount))
                                         echo "<br><center><h2><b><i>No Results</i></b></h2></center>";
                                     else
@@ -113,17 +109,8 @@ if ($rno) {
                                   </thead>
                                   <tbody>
                                     <?php
-                                    if($count>=3){
-                                        ?>
-                                        <h2>You can't issue any books,you already issued your no. of limit</h2> 
-                                        <?php
-                                    }
-                                    else{
-                                        ?>
-                                        <h2>You can issue <?php echo 3-$count ?> more books</h2> 
-                                        <?php
-                                    }
                             
+                            //$result=$conn->query($sql);
                             while($row=$result->fetch_assoc())
                             {
                                 $bookid=$row['BookId'];
@@ -144,7 +131,7 @@ if ($rno) {
                                                  </b></td>
                                       <td><center><a href="bookdetails.php?id=<?php echo $bookid; ?>" class="btn btn-primary">Details</a>
                                       	<?php
-                                      	if($avail > 0 && $count<3)
+                                      	if($avail > 0)
                                       		echo "<a href=\"issue_request.php?id=".$bookid."\" class=\"btn btn-success\">Issue</a>";
                                         ?>
                                         </center></td>
@@ -185,5 +172,4 @@ if ($rno) {
 <?php }
 else {
     echo "<script type='text/javascript'>alert('Access Denied!!!')</script>";
-    mysqli_close($conn);
 } ?>

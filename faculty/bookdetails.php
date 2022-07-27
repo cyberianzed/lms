@@ -3,12 +3,7 @@ require('dbconn.php');
 ?>
 
 <?php 
-$rno=$_SESSION['RollNo'];
-if ($rno) {
-    $sql="select COUNT(*) from LMS.record WHERE RollNo = '$rno'";
-
-    $result=$conn->query($sql);
-    $count=mysqli_fetch_assoc($result)['COUNT(*)'];
+if ($_SESSION['RollNo']) {
     ?>
 
 <!DOCTYPE html>
@@ -74,89 +69,57 @@ if ($rno) {
                         <!--/.sidebar-->
                     </div>
                     <!--/.span3-->
+                    
                     <div class="span9">
-                        <form class="form-horizontal row-fluid" action="book.php" method="post">
-                                        <div class="control-group">
-                                            <label class="control-label" for="Search"><b>Search:</b></label>
-                                            <div class="controls">
-                                                <input type="text" id="title" name="title" placeholder="Enter Name/ID of Book" class="span8" required>
-                                                <button type="submit" name="submit"class="btn">Search</button>
-                                            </div>
-                                        </div>
-                                    </form>
-                                    <br>
-                                    <?php
-                                    if(isset($_POST['submit']))
-                                        {$s=$_POST['title'];
-                                            $sql="select * from LMS.book where BookId='$s' or Title like '%$s%'";
-                                        }
-                                    else
-                                        $sql="select * from LMS.book order by Availability DESC";
+                        <div class="content">
 
-                                    $result=$conn->query($sql);
-                                    $rowcount=mysqli_num_rows($result);
-                                    if(!($rowcount))
-                                        echo "<br><center><h2><b><i>No Results</i></b></h2></center>";
-                                    else
-                                    {
-
-                                    
-                                    ?>
-                        <table class="table" id = "tables">
-                                  <thead>
-                                    <tr>
-                                      <th>Book id</th>
-                                      <th>Book name</th>
-                                      <th>Availability</th>
-                                      <th></th>
-                                    </tr>
-                                  </thead>
-                                  <tbody>
-                                    <?php
-                                    if($count>=3){
-                                        ?>
-                                        <h2>You can't issue any books,you already issued your no. of limit</h2> 
-                                        <?php
-                                    }
-                                    else{
-                                        ?>
-                                        <h2>You can issue <?php echo 3-$count ?> more books</h2> 
-                                        <?php
-                                    }
+                        <div class="module">
+                            <div class="module-head">
+                                <h3>Book Details</h3>
+                            </div>
+                            <div class="module-body">
+                        <?php
+                            $x=$_GET['id'];
+                            $sql="select * from LMS.book where BookId='$x'";
+                            $result=$conn->query($sql);
+                            $row=$result->fetch_assoc();    
                             
-                            while($row=$result->fetch_assoc())
-                            {
                                 $bookid=$row['BookId'];
                                 $name=$row['Title'];
+                                $publisher=$row['Publisher'];
+                                $year=$row['Year'];
                                 $avail=$row['Availability'];
-                            ?>
-                                    <tr>
-                                      <td><?php echo $bookid ?></td>
-                                      <td><?php echo $name ?></td>
-                                      <td><b><?php 
-                                           if($avail > 0)
-                                              echo "<font color=\"green\">AVAILABLE</font>";
-                                            else
-                                            	echo "<font color=\"red\">NOT AVAILABLE</font>";
+                                echo "<b>Book ID:</b> ".$bookid."<br><br>";
+                                echo "<b>Title:</b> ".$name."<br><br>";
+                                $sql1="select * from LMS.author where BookId='$bookid'";
+                                $result=$conn->query($sql1);
+                                
+                                echo "<b>Author:</b> ";
+                                while($row1=$result->fetch_assoc())
+                                {
+                                    echo $row1['Author']."&nbsp;";
+                                }
+                                echo "<br><br>";
+                                echo "<b>Publisher:</b> ".$publisher."<br><br>";
+                                echo "<b>Year:</b> ".$year."<br><br>";
+                                echo "<b>Availability:</b> ".$avail."<br><br>";
 
-                                                 ?>
-                                                 	
-                                                 </b></td>
-                                      <td><center><a href="bookdetails.php?id=<?php echo $bookid; ?>" class="btn btn-primary">Details</a>
-                                      	<?php
-                                      	if($avail > 0 && $count<3)
-                                      		echo "<a href=\"issue_request.php?id=".$bookid."\" class=\"btn btn-success\">Issue</a>";
-                                        ?>
-                                        </center></td>
-                                    </tr>
-                               <?php }} ?>
-                               </tbody>
-                                </table>
+                                
+                        
+                           
+                            ?>
+                            
+                        <a href="book.php" class="btn btn-primary">Go Back</a>                             
+                               </div>
+                           </div>
                             </div>
                     <!--/.span3-->
                     <!--/.span9-->
                 
                     <!--/.span3-->
+                    <!--/.span9-->
+                </div>
+                    
                     <!--/.span9-->
                 </div>
                     <!--/.span9-->
@@ -185,5 +148,4 @@ if ($rno) {
 <?php }
 else {
     echo "<script type='text/javascript'>alert('Access Denied!!!')</script>";
-    mysqli_close($conn);
 } ?>
