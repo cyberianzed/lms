@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 28, 2022 at 07:01 PM
+-- Generation Time: Jul 28, 2022 at 07:44 PM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 8.0.13
 
@@ -57,8 +57,7 @@ INSERT INTO `author` (`BookId`, `Author`) VALUES
 (17, 'Aravind Alex'),
 (17, 'Haldar Sibsankar'),
 (18, 'Sandhu'),
-(18, 'Singh'),
-(19, 'Johns');
+(18, 'Singh');
 
 -- --------------------------------------------------------
 
@@ -87,17 +86,16 @@ INSERT INTO `book` (`BookId`, `Title`, `Publisher`, `Year`, `Availability`) VALU
 (6, 'DSA', 'X', '2010', 10),
 (7, 'Discrete Structures', 'Pearson', '2010', 10),
 (8, 'Database Processing', 'Prentice Hall', '2013', 12),
-(9, 'Computer System Architecture', 'Prentice Hall', '2015', 6),
+(9, 'Computer System Architecture', 'Prentice Hall', '2015', 4),
 (10, 'C: How to program', 'Prentice Hall', '2009', 3),
-(11, 'Atomic and Nuclear Systems', 'Pearson India ', '2017', 11),
+(11, 'Atomic and Nuclear Systems', 'Pearson India ', '2017', 13),
 (12, 'The PlayBook', 'Stinson', '2010', 12),
 (13, 'General Theory of Relativity', 'Pearson India ', '2012', 5),
-(14, 'Heat and Thermodynamics', 'Pearson', '2013', 8),
+(14, 'Heat and Thermodynamics', 'Pearson', '2013', 9),
 (15, 'Machine Design', 'Pearson India ', '2012', 5),
 (16, 'Nuclear Physics', 'Pearson India ', '1998', 7),
 (17, 'Operating System', 'Pearson India ', '1990', 7),
-(18, 'Theory of Machines', 'Pearson', '1992', 12),
-(19, 'Hi', 'DC', '2022', 3);
+(18, 'Theory of Machines', 'Pearson', '1992', 12);
 
 -- --------------------------------------------------------
 
@@ -150,15 +148,7 @@ INSERT INTO `message` (`M_Id`, `RollNo`, `Msg`, `Date`, `Time`) VALUES
 (30, 'b160158cs', 'Your request for issue of BookId: 18  has been accepted', '2022-10-25', '23:30:49'),
 (31, 'b160511cs', 'Your request for issue of BookId: 11  has been accepted', '2022-10-25', '23:30:58'),
 (32, 'b160511cs', 'Your request for issue of BookId: 13  has been accepted', '2022-10-25', '23:31:01'),
-(33, 'b160003ch', 'Your request for issue of BookId: 15  has been rejected', '2022-10-26', '03:04:51'),
-(34, 'b160511cs', 'Your request for issue of BookId: 18  has been rejected', '2022-07-25', '22:04:52'),
-(35, 'b160001cs', 'Your request for renewal of BookId: 9  has been accepted', '2022-07-25', '22:05:22'),
-(36, 'b160001cs', 'Your request for return of BookId: 9  has been accepted', '2022-07-25', '22:05:36'),
-(37, 'b160011ch', 'Your request for issue of BookId: 11  has been accepted', '2022-07-25', '23:07:46'),
-(38, 'b160003ch', 'Your request for issue of BookId: 14  has been accepted', '2022-07-25', '23:07:53'),
-(39, 'b160003ch', 'Your request for return of BookId: 9  has been accepted', '2022-07-28', '21:44:34'),
-(40, '33', 'hi', '2022-07-28', '21:55:39'),
-(41, '33', 'Your request for issue of BookId: 11 has been accepted', '2022-07-28', '22:10:29');
+(33, 'b160003ch', 'Your request for issue of BookId: 15  has been rejected', '2022-10-26', '03:04:51');
 
 -- --------------------------------------------------------
 
@@ -183,8 +173,7 @@ INSERT INTO `recommendations` (`R_ID`, `Book_Name`, `Description`, `RollNo`) VAL
 (5, 'Operating System', 'An operating system (OS) is system software that manages computer hardware and software resources and provides common services for computer programs.', 'b160001cs'),
 (7, 'Networks ', 'A computer network, or data network, is a digital telecommunications network which allows nodes to share resources. In computer networks, computing devices exchange data with each other using connections (data links) between nodes.', 'b160999cs'),
 (8, 'String Theory', 'In physics, string theory is a theoretical framework in which the point-like particles of particle physics are replaced by one-dimensional objects called strings. It describes how these strings propagate through space and interact with each other.', 'b160777cs'),
-(9, 'The Theory of Everything', 'The Theory of Everything', 'b160777cs'),
-(10, 'sss', 'sss', 'b160011ch');
+(9, 'The Theory of Everything', 'The Theory of Everything', 'b160777cs');
 
 -- --------------------------------------------------------
 
@@ -208,17 +197,13 @@ CREATE TABLE `record` (
 --
 
 INSERT INTO `record` (`RollNo`, `BookId`, `Date_of_Issue`, `Due_Date`, `Date_of_Return`, `Dues`, `Renewals_left`, `Time`) VALUES
-('33', 11, '2022-07-28', '2023-01-24', NULL, NULL, 1, '22:16:03'),
-('ADMIN', 8, NULL, NULL, NULL, NULL, NULL, '22:10:37'),
 ('b160001cs', 3, NULL, NULL, NULL, NULL, NULL, '13:18:12'),
-('b160001cs', 9, '2022-10-25', '2023-02-22', '2022-07-25', -212, 0, '13:14:20'),
+('b160001cs', 9, '2022-10-25', '2022-12-24', NULL, NULL, 1, '13:14:20'),
 ('b160001cs', 11, '2022-10-25', '2022-12-24', NULL, NULL, 1, '13:14:20'),
 ('b160001cs', 12, NULL, NULL, NULL, NULL, NULL, '13:14:20'),
-('b160003ch', 8, NULL, NULL, NULL, NULL, NULL, '23:50:04'),
-('b160003ch', 9, '2022-10-25', '2022-12-24', '2022-07-28', -149, 1, '13:14:20'),
-('b160003ch', 14, '2022-07-25', '2022-09-23', NULL, NULL, 1, '13:14:20'),
+('b160003ch', 9, '2022-10-25', '2022-12-24', NULL, NULL, 1, '13:14:20'),
+('b160003ch', 14, NULL, NULL, NULL, NULL, NULL, '13:14:20'),
 ('b160011ch', 10, '2022-10-25', '2022-12-24', NULL, NULL, 1, '13:14:20'),
-('b160011ch', 11, '2022-07-25', '2022-09-23', NULL, NULL, 1, '23:06:54'),
 ('b160011ch', 17, '2022-10-25', '2022-12-24', NULL, NULL, 1, '13:14:20'),
 ('b160111cs', 1, '2022-10-15', '2022-12-14', NULL, NULL, 1, '13:14:20'),
 ('B160158CS', 1, '2022-10-15', '2020-04-12', NULL, NULL, 0, '13:14:20'),
@@ -236,13 +221,11 @@ INSERT INTO `record` (`RollNo`, `BookId`, `Date_of_Issue`, `Due_Date`, `Date_of_
 ('b160511cs', 11, '2022-10-25', '2022-12-24', NULL, NULL, 1, '13:14:20'),
 ('b160511cs', 13, '2022-10-25', '2022-12-24', NULL, NULL, 1, '13:14:20'),
 ('b160511cs', 17, NULL, NULL, NULL, NULL, NULL, '13:14:20'),
+('b160511cs', 18, NULL, NULL, NULL, NULL, NULL, '13:14:20'),
 ('b160632cs', 3, '2022-07-16', '2022-11-14', '2022-10-25', -20, 0, '13:14:20'),
 ('B160632CS', 15, '2022-10-25', '2022-12-24', NULL, NULL, 1, '13:14:20'),
 ('B160632CS', 17, NULL, NULL, NULL, NULL, NULL, '13:17:31'),
-('b160854cs', 6, '2022-10-16', '2019-04-14', NULL, NULL, 1, '13:14:20'),
-('kk', 7, NULL, NULL, NULL, NULL, NULL, '22:13:55'),
-('kk', 8, NULL, NULL, NULL, NULL, NULL, '22:09:05'),
-('kk', 16, NULL, NULL, NULL, NULL, NULL, '22:14:04');
+('b160854cs', 6, '2022-10-16', '2019-04-14', NULL, NULL, 1, '13:14:20');
 
 -- --------------------------------------------------------
 
@@ -282,6 +265,7 @@ CREATE TABLE `return` (
 --
 
 INSERT INTO `return` (`RollNo`, `BookId`) VALUES
+('b160003ch', 9),
 ('b160158cs', 1),
 ('b160158cs', 18),
 ('b160511cs', 10),
@@ -308,12 +292,6 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`RollNo`, `Name`, `Type`, `Category`, `EmailId`, `MobNo`, `Password`) VALUES
-('10', 'Jose ', 'Faculty', 'GEN', 'johnsraju2002@gmail.com', 10, '10'),
-('1234', 'ttt', 'Faculty', 'GEN', 'jose1234@gmail.com', 1234, '1234'),
-('31', 'Jibbin', 'Faculty', 'GEN', 'jibin@1234', 31, '31'),
-('33', 'Johns Raju', 'Faculty', 'General', 'johns@gmail.com', 7034863808, '33'),
-('34', 'Jose K James', 'Faculty', 'SC', 'jose123@gmail.com', 34, '34'),
-('35', 'Joseph', 'Faculty', 'GEN', 'joseph123@gmail.com', 35, '35'),
 ('ADMIN', 'admin', 'Admin', NULL, 'admin@gmail.com', 123456789, 'admin'),
 ('b160001cs', 'John', 'Student', 'GEN', 'john@gmail.com', 9876543210, 'b160001cs'),
 ('b160002cs', 'Adam', 'Student', 'ST', 'adam@yahoo.com', 7845965212, 'b160002cs'),
@@ -338,6 +316,7 @@ INSERT INTO `user` (`RollNo`, `Name`, `Type`, `Category`, `EmailId`, `MobNo`, `P
 ('B160632CS', 'KENIL', 'Student', 'GEN', 'kenilshah081198@gmail.com', 9892506094, '1234'),
 ('b160777cs', 'Sheldon', 'Student', 'GEN', 'smartestpersoninroom@gmail.com', 9696969696, 'b160777cs'),
 ('b160854cs', 'Ram Prabhu', 'Student', 'SC', 'ram@nitc.ac.in', 968599, '1234'),
+('b160951cs', 'Misty', 'Student', 'SC', 'watermaster@hotmail.com', 4145424847, 'b160951cs'),
 ('b160999cs', 'Chandler', 'Student', 'OBC', 'sarcasticlord@hotmail.com', 9494959694, 'b160999cs'),
 ('kk', 'kk', 'Student', 'General', 'kk', 123, 'kk');
 
@@ -407,19 +386,19 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `book`
 --
 ALTER TABLE `book`
-  MODIFY `BookId` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `BookId` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT for table `message`
 --
 ALTER TABLE `message`
-  MODIFY `M_Id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
+  MODIFY `M_Id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
 
 --
 -- AUTO_INCREMENT for table `recommendations`
 --
 ALTER TABLE `recommendations`
-  MODIFY `R_ID` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `R_ID` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- Constraints for dumped tables
