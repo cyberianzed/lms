@@ -63,12 +63,6 @@ require('dbconn.php');
 			<input type="text" Name="PhoneNumber" placeholder="Phone Number" required>
 			<input type="text" Name="RollNo" placeholder="Roll Number" required="">
 			
-			<select name="Category" id="Category">
-				<option value="GEN">General</option>
-				<option value="OBC">OBC</option>
-				<option value="SC">SC</option>
-				<option value="ST">ST</option>
-			</select>
 			<br>
 		
 		
@@ -133,7 +127,7 @@ $email=$_POST['Email'];
 $password=$_POST['Password'];
 $mobno=$_POST['PhoneNumber'];
 $rollno=$_POST['RollNo'];
-$category=$_POST['Category'];
+$category='General';
 $type='Student';
 
 $sql="insert into LMS.user (Name,Type,Category,RollNo,EmailId,MobNo,Password) values ('$name','$type','$category','$rollno','$email','$mobno','$password')";

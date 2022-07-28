@@ -115,12 +115,12 @@ if ($rno) {
                                     <?php
                                     if($count>=3){
                                         ?>
-                                        <h2>You can't issue any books,you already issued your no. of limit</h2> 
+                                        <h2>You reached your limit, you can't request any more books.</h2> 
                                         <?php
                                     }
                                     else{
                                         ?>
-                                        <h2>You can issue <?php echo 3-$count ?> more books</h2> 
+                                        <h2>You can request <?php echo 3-$count ?> more books.</h2> 
                                         <?php
                                     }
                             
