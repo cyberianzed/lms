@@ -1,7 +1,10 @@
-﻿<?php
+<?php
 require('dbconn.php');
 ?>
 
+<?php 
+if ($_SESSION['RollNo']) {
+    ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -65,44 +68,38 @@ require('dbconn.php');
                         </div>
                         <!--/.sidebar-->
                     </div>
-                    <!--/.span3-->
                     <div class="span9">
-                    	<center>
-                           	<div class="card" style="width: 50%;"> 
-                            <H1>Student Login</H1>
-                    			<img class="card-img-top" src="images/profile2.png" alt="Card image cap">
-                    			<div class="card-body">
-
-                                <?php
-                                $rollno = $_SESSION['RollNo'];
-                                $sql="select * from LMS.user where RollNo='$rollno'";
-                                $result=$conn->query($sql);
-                                $row=$result->fetch_assoc();
-
-                                $name=$row['Name'];
-                                $category=$row['Category'];
-                                $email=$row['EmailId'];
-                                $mobno=$row['MobNo'];
-                                ?>    
-                    				<i>
-                    				<h1 class="card-title"><center><?php echo $name ?></center></h1>
-                    				<br>
-                    				<p><b>Email ID: </b><?php echo $email ?></p>
-                    				<br>
-                    				<p><b>Roll No: </B><?php echo $rollno ?></p>
-                    				<br>
-                    				<p><b>Category: </b><?php echo $category ?></p>
-                    				<br>
-                    				<p><b>Mobile number: </b><?php echo $mobno ?></p>
-                    				</b>
-                                </i>
-
-                    			</div>
-                    		</div>
-                            <br>
-                            <a href="edit_student_details.php" class="btn btn-primary">Edit Details</a>    
-      					</center>              	
-                    </div>
+                        <table class="table" id = "tables">
+                                  <thead>
+                                    <tr>
+                                      <th>Message</th>
+                                      <th>Date</th>
+                                      <th>Time</th>
+                                    </tr>
+                                  </thead>
+                                  <tbody>
+                                    <?php
+                                    $rollno=$_SESSION['RollNo'];
+                            $sql="select * from LMS.message where RollNo='$rollno' order by Date DESC,Time DESC";
+                            $result=$conn->query($sql);
+                            while($row=$result->fetch_assoc())
+                            {
+                                $msg=$row['Msg'];
+                                $date=$row['Date'];
+                                $time=$row['Time'];
+                            
+                           
+                            ?>
+                                    <tr>
+                                      <td><?php echo $msg ?></td>
+                                      <td><?php echo $date ?></td>
+                                      <td><?php echo $time ?></td>
+                                    </tr>
+                               <?php } ?>
+                               </tbody>
+                                </table>
+                            </div>
+                    <!--/.span3-->
                     
                     <!--/.span9-->
                 </div>
@@ -111,7 +108,7 @@ require('dbconn.php');
         </div>
 <div class="footer">
             <div class="container">
-                <b class="copyleft">&copy; 2022 Library Management System </b> <br>&nbsp;&nbsp; _The G_
+                <b class="copyleft">&copy; 2022 Library Management System </b> <br>&nbsp;&nbsp; _The J's_
             </div>
         </div>
         
@@ -127,3 +124,8 @@ require('dbconn.php');
     </body>
 
 </html>
+
+<?php }
+else {
+    echo "<script type='text/javascript'>alert('Access Denied!!!')</script>";
+} ?>

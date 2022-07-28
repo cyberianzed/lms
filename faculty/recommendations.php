@@ -1,7 +1,10 @@
-﻿<?php
+<?php
 require('dbconn.php');
 ?>
 
+<?php 
+if ($_SESSION['RollNo']) {
+    ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -66,44 +69,48 @@ require('dbconn.php');
                         <!--/.sidebar-->
                     </div>
                     <!--/.span3-->
-                    <div class="span9">
-                    	<center>
-                           	<div class="card" style="width: 50%;"> 
-                            <H1>Student Login</H1>
-                    			<img class="card-img-top" src="images/profile2.png" alt="Card image cap">
-                    			<div class="card-body">
-
-                                <?php
-                                $rollno = $_SESSION['RollNo'];
-                                $sql="select * from LMS.user where RollNo='$rollno'";
-                                $result=$conn->query($sql);
-                                $row=$result->fetch_assoc();
-
-                                $name=$row['Name'];
-                                $category=$row['Category'];
-                                $email=$row['EmailId'];
-                                $mobno=$row['MobNo'];
-                                ?>    
-                    				<i>
-                    				<h1 class="card-title"><center><?php echo $name ?></center></h1>
-                    				<br>
-                    				<p><b>Email ID: </b><?php echo $email ?></p>
-                    				<br>
-                    				<p><b>Roll No: </B><?php echo $rollno ?></p>
-                    				<br>
-                    				<p><b>Category: </b><?php echo $category ?></p>
-                    				<br>
-                    				<p><b>Mobile number: </b><?php echo $mobno ?></p>
-                    				</b>
-                                </i>
-
-                    			</div>
-                    		</div>
-                            <br>
-                            <a href="edit_student_details.php" class="btn btn-primary">Edit Details</a>    
-      					</center>              	
-                    </div>
                     
+                    <div class="span9">
+                    <div class="content">
+
+                        <div class="module">
+                            <div class="module-head">
+                                <h3>Reccomend a Book</h3>
+                            </div>
+                            <div class="module-body">
+
+                                    
+                                    <br >
+
+                                    <form class="form-horizontal row-fluid" action="recommendations.php" method="post">
+                                        <div class="control-group">
+                                            <label class="control-label" for="Title"><b>Book Title</b></label>
+                                            <div class="controls">
+                                                <input type="text" id="title" name="title" placeholder="Title" class="span8" required>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="control-group">
+                                            <label class="control-label" for="Description"><b>Description</b></label>
+                                            <div class="controls">
+                                                <input type="text" id="Description" name="Description" placeholder="Description" class="span8" required>
+                                            </div>
+                                        </div>
+
+                                        <div class="control-group">
+                                            <div class="controls">
+                                                <button type="submit" name="submit"class="btn">Submit Recommendation</button>
+                                            </div>
+                                        </div>
+                                    </form>
+                            </div>
+                        </div>
+
+                        
+                        
+                    </div><!--/.content-->
+                </div>
+
                     <!--/.span9-->
                 </div>
             </div>
@@ -123,7 +130,36 @@ require('dbconn.php');
         <script src="scripts/flot/jquery.flot.resize.js" type="text/javascript"></script>
         <script src="scripts/datatables/jquery.dataTables.js" type="text/javascript"></script>
         <script src="scripts/common.js" type="text/javascript"></script>
-      
+
+<?php
+if(isset($_POST['submit']))
+{
+    $title=$_POST['title'];
+    $Description=$_POST['Description'];
+    $rollno=$_SESSION['RollNo'];
+
+$sql1="insert into LMS.recommendations (Book_Name,Description,RollNo) values ('$title','$Description','$rollno')"; 
+
+
+
+if($conn->query($sql1) === TRUE){
+
+
+echo "<script type='text/javascript'>alert('Success')</script>";
+}
+else
+{//echo $conn->error;
+echo "<script type='text/javascript'>alert('Error')</script>";
+}
+    
+}
+?> 
+
     </body>
 
 </html>
+
+<?php }
+else {
+    echo "<script type='text/javascript'>alert('Access Denied!!!')</script>";
+} ?>

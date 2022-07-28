@@ -69,7 +69,7 @@ require('dbconn.php');
                     <div class="span9">
                     	<center>
                            	<div class="card" style="width: 50%;"> 
-                            <H1>Student Login</H1>
+                            <H1>Faculty Login</H1>
                     			<img class="card-img-top" src="images/profile2.png" alt="Card image cap">
                     			<div class="card-body">
 

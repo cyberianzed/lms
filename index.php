@@ -91,7 +91,7 @@ require('dbconn.php');
 
 </div>
 <div class="position-absolute top-0 end-0">
-		<a href="about us/index.html"><button type="button" class="btn btn-dark">About Us</button></a>
+		<a href="about_us/index.html"><button type="button" class="btn btn-dark">About Us</button></a>
 		</div>
 <?php
 if(isset($_POST['signin']))
