@@ -37,7 +37,7 @@ require('dbconn.php');
 		
     <div class="register">
 			<h2>Faculty Sign Up</h2>
-			<form action="" method="post">
+			<form action="index.php " method="post">
 				<input type="text" Name="Name" placeholder="Name" required>
 				<input type="text" Name="Email" placeholder="Email" required>
 				<input type="password" Name="Password" placeholder="Password" required>
