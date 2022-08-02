@@ -97,19 +97,6 @@ require('dbconn.php');
                                         </div>
                                     </div>
 
-                                    <div class="control-group">
-                                            <label class="control-label" for="Category"><b>Category:</b></label>
-                                            <div class="controls">
-                                                <select name = "Category" tabindex="1" value="SC" data-placeholder="Select Category" class="span6">
-                                                    <option value="<?php echo $category?>"><?php echo $category ?> </option>
-                                                    <option value="GEN">GEN</option>
-                                                    <option value="OBC">OBC</option>
-                                                    <option value="SC">SC</option>
-                                                    <option value="ST">ST</option>
-                                                </select>
-                                            </div>
-                                    </div>
-
 
                                     <div class="control-group">
                                         <label class="control-label" for="EmailId"><b>Email Id:</b></label>
