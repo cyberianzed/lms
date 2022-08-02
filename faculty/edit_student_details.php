@@ -82,7 +82,6 @@ require('dbconn.php');
                                 $row=$result->fetch_assoc();
 
                                 $name=$row['Name'];
-                                $category=$row['Category'];
                                 $email=$row['EmailId'];
                                 $mobno=$row['MobNo'];
                                 $pswd=$row['Password'];
@@ -95,19 +94,6 @@ require('dbconn.php');
                                         <div class="controls">
                                             <input type="text" id="Name" name="Name" value= "<?php echo $name?>" class="span8" required>
                                         </div>
-                                    </div>
-
-                                    <div class="control-group">
-                                            <label class="control-label" for="Category"><b>Category:</b></label>
-                                            <div class="controls">
-                                                <select name = "Category" tabindex="1" value="SC" data-placeholder="Select Category" class="span6">
-                                                    <option value="<?php echo $category?>"><?php echo $category ?> </option>
-                                                    <option value="GEN">GEN</option>
-                                                    <option value="OBC">OBC</option>
-                                                    <option value="SC">SC</option>
-                                                    <option value="ST">ST</option>
-                                                </select>
-                                            </div>
                                     </div>
 
 
@@ -169,12 +155,11 @@ if(isset($_POST['submit']))
 {
     $rollno = $_GET['id'];
     $name=$_POST['Name'];
-    $category=$_POST['Category'];
     $email=$_POST['EmailId'];
     $mobno=$_POST['MobNo'];
     $pswd=$_POST['Password'];
 
-$sql1="update LMS.user set Name='$name', Category='$category', EmailId='$email', MobNo='$mobno', Password='$pswd' where RollNo='$rollno'";
+$sql1="update LMS.user set Name='$name', EmailId='$email', MobNo='$mobno', Password='$pswd' where RollNo='$rollno'";
 
 
 
