@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 require('dbconn.php');
 ?>
 
@@ -57,11 +57,9 @@ if ($_SESSION['RollNo']) {
                                 </a></li>
                                  <li><a href="message.php"><i class="menu-icon icon-inbox"></i>Messages</a>
                                 </li>
-                                <li><a href="student.php"><i class="menu-icon icon-user"></i>Manage Students </a>
-                                </li>
                                 <li><a href="book.php"><i class="menu-icon icon-book"></i>All Books </a></li>
-                                <li><a href="addbook.php"><i class="menu-icon icon-edit"></i>Add Books </a></li>
-                                <li><a href="requests.php"><i class="menu-icon icon-tasks"></i>Issue/Return Requests </a></li>
+                                <li><a href="history.php"><i class="menu-icon icon-tasks"></i>Previously Borrowed Books </a></li>
+                                <!-- <li><a href="recommendations.php"><i class="menu-icon icon-list"></i>Recommend Books </a></li> -->
                                 <li><a href="current.php"><i class="menu-icon icon-list"></i>Currently Issued Books </a></li>
                             </ul>
                             <ul class="widget widget-menu unstyled">
@@ -73,37 +71,46 @@ if ($_SESSION['RollNo']) {
                     <!--/.span3-->
                     
                     <div class="span9">
-                        <center>
-                            <div class="card" style="width: 50%;"> 
-                                <img class="card-img-top" src="images/profile2.png" alt="Card image cap">
-                                <div class="card-body">
+                    <div class="content">
 
-                                <?php
-                                $rollno = $_SESSION['RollNo'];
-                                $sql="select * from LMS.user where RollNo='$rollno'";
-                                $result=$conn->query($sql);
-                                $row=$result->fetch_assoc();
-
-                                $name=$row['Name'];
-                                $email=$row['EmailId'];
-                                $mobno=$row['MobNo'];
-                                ?>    
-                                    <i>
-                                    <h1 class="card-title"><center><?php echo $name ?></center></h1>
-                                    <br>
-                                    <p><b>Email ID: </b><?php echo $email ?></p>
-                                    <br>
-                                    <p><b>Mobile number: </b><?php echo $mobno ?></p>
-                                    </b>
-                                </i>
-
-                                </div>
+                        <div class="module">
+                            <div class="module-head">
+                                <h3>Reccomend a Book</h3>
                             </div>
-                        <br>
-                        <a href="edit_admin_details.php" class="btn btn-primary">Edit Details</a>
-                        </center>               
-                    </div>
-                    
+                            <div class="module-body">
+
+                                    
+                                    <br >
+
+                                    <form class="form-horizontal row-fluid" action="recommendations.php" method="post">
+                                        <div class="control-group">
+                                            <label class="control-label" for="Title"><b>Book Title</b></label>
+                                            <div class="controls">
+                                                <input type="text" id="title" name="title" placeholder="Title" class="span8" required>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="control-group">
+                                            <label class="control-label" for="Description"><b>Description</b></label>
+                                            <div class="controls">
+                                                <input type="text" id="Description" name="Description" placeholder="Description" class="span8" required>
+                                            </div>
+                                        </div>
+
+                                        <div class="control-group">
+                                            <div class="controls">
+                                                <button type="submit" name="submit"class="btn">Submit Recommendation</button>
+                                            </div>
+                                        </div>
+                                    </form>
+                            </div>
+                        </div>
+
+                        
+                        
+                    </div><!--/.content-->
+                </div>
+
                     <!--/.span9-->
                 </div>
             </div>
@@ -111,7 +118,7 @@ if ($_SESSION['RollNo']) {
         </div>
 <div class="footer">
             <div class="container">
-                <b class="copyleft">&copy; 2022 Library Management System </b> <br>&nbsp;&nbsp; _The J's_
+                <b class="copyleft">&copy; 2022 Library Management System </b> <br>&nbsp;&nbsp; _The G_
             </div>
         </div>
         
@@ -123,11 +130,34 @@ if ($_SESSION['RollNo']) {
         <script src="scripts/flot/jquery.flot.resize.js" type="text/javascript"></script>
         <script src="scripts/datatables/jquery.dataTables.js" type="text/javascript"></script>
         <script src="scripts/common.js" type="text/javascript"></script>
-      
+
+<?php
+if(isset($_POST['submit']))
+{
+    $title=$_POST['title'];
+    $Description=$_POST['Description'];
+    $rollno=$_SESSION['RollNo'];
+
+$sql1="insert into LMS.recommendations (Book_Name,Description,RollNo) values ('$title','$Description','$rollno')"; 
+
+
+
+if($conn->query($sql1) === TRUE){
+
+
+echo "<script type='text/javascript'>alert('Success')</script>";
+}
+else
+{//echo $conn->error;
+echo "<script type='text/javascript'>alert('Error')</script>";
+}
+    
+}
+?> 
+
     </body>
 
 </html>
-
 
 <?php }
 else {

@@ -81,7 +81,6 @@ require('dbconn.php');
                                 $row=$result->fetch_assoc();
 
                                 $name=$row['Name'];
-                                $category=$row['Category'];
                                 $email=$row['EmailId'];
                                 $mobno=$row['MobNo'];
                                 $pswd=$row['Password'];
@@ -155,12 +154,11 @@ if(isset($_POST['submit']))
 {
     $rollno = $_GET['id'];
     $name=$_POST['Name'];
-    $category=$_POST['Category'];
     $email=$_POST['EmailId'];
     $mobno=$_POST['MobNo'];
     $pswd=$_POST['Password'];
 
-$sql1="update LMS.user set Name='$name', Category='$category', EmailId='$email', MobNo='$mobno', Password='$pswd' where RollNo='$rollno'";
+$sql1="update LMS.user set Name='$name', EmailId='$email', MobNo='$mobno', Password='$pswd' where RollNo='$rollno'";
 
 
 

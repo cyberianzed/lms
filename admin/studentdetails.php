@@ -87,13 +87,11 @@ if ($_SESSION['RollNo']) {
                             $row=$result->fetch_assoc();    
                             
                                 $name=$row['Name'];
-                                $category=$row['Category'];
                                 $email=$row['EmailId'];
                                 $mobno=$row['MobNo'];
 
 
                                 echo "<b><u>Name:</u></b> ".$name."<br><br>";
-                                echo "<b><u>Category:</u></b> ".$category."<br><br>";
                                 echo "<b><u>Roll No:</u></b> ".$rno."<br><br>";
                                 echo "<b><u>Email Id:</u></b> ".$email."<br><br>";
                                 echo "<b><u>Mobile No:</u></b> ".$mobno."<br><br>"; 

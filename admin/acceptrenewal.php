@@ -4,11 +4,6 @@ require('dbconn.php');
 $bookid=$_GET['id1'];
 $rollno=$_GET['id2'];
 
-$result=$conn->query($sql);
-$row=$result->fetch_assoc();
-
-
-
 
 $sql1="update LMS.record set Due_Date=date_add(Due_Date,interval 60 day),Renewals_left=0 where BookId='$bookid' and RollNo='$rollno'";
  

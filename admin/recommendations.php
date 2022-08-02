@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 require('dbconn.php');
 ?>
 
@@ -62,6 +62,7 @@ if ($_SESSION['RollNo']) {
                                 <li><a href="book.php"><i class="menu-icon icon-book"></i>All Books </a></li>
                                 <li><a href="addbook.php"><i class="menu-icon icon-edit"></i>Add Books </a></li>
                                 <li><a href="requests.php"><i class="menu-icon icon-tasks"></i>Issue/Return Requests </a></li>
+                                <!-- <li><a href="recommendations.php"><i class="menu-icon icon-list"></i>Book Recommendations </a></li> -->
                                 <li><a href="current.php"><i class="menu-icon icon-list"></i>Currently Issued Books </a></li>
                             </ul>
                             <ul class="widget widget-menu unstyled">
@@ -71,39 +72,39 @@ if ($_SESSION['RollNo']) {
                         <!--/.sidebar-->
                     </div>
                     <!--/.span3-->
-                    
+
                     <div class="span9">
-                        <center>
-                            <div class="card" style="width: 50%;"> 
-                                <img class="card-img-top" src="images/profile2.png" alt="Card image cap">
-                                <div class="card-body">
+                        <table class="table" id = "tables">
+                                  <thead>
+                                    <tr>
+                                      <th>Book Name</th>
+                                      <th>Description</th>
+                                      <th>Recommended By</th>
+                                    </tr>
+                                  </thead>
+                                  <tbody>
+                                    <?php
+                            $sql="select * from LMS.recommendations";
+                            $result=$conn->query($sql);
+                            while($row=$result->fetch_assoc())
+                            {
+                                $bookname=$row['Book_Name'];
+                                $description=$row['Description'];
+                                $rollno=$row['RollNo'];
+                            ?>
+                                    <tr>
+                                      <td><?php echo $bookname ?></td>
+                                      <td><?php echo $description?></td>
+                                      <td><b><?php echo strtoupper($rollno)?></b></td>
 
-                                <?php
-                                $rollno = $_SESSION['RollNo'];
-                                $sql="select * from LMS.user where RollNo='$rollno'";
-                                $result=$conn->query($sql);
-                                $row=$result->fetch_assoc();
+                                    </tr>
+                               <?php } ?>
+                               </tbody>
+                                </table>
 
-                                $name=$row['Name'];
-                                $email=$row['EmailId'];
-                                $mobno=$row['MobNo'];
-                                ?>    
-                                    <i>
-                                    <h1 class="card-title"><center><?php echo $name ?></center></h1>
-                                    <br>
-                                    <p><b>Email ID: </b><?php echo $email ?></p>
-                                    <br>
-                                    <p><b>Mobile number: </b><?php echo $mobno ?></p>
-                                    </b>
-                                </i>
-
-                                </div>
-                            </div>
-                        <br>
-                        <a href="edit_admin_details.php" class="btn btn-primary">Edit Details</a>
-                        </center>               
+                                <center>
+                                <a href="addbook.php" class="btn btn-success">Add a Book</a></center>
                     </div>
-                    
                     <!--/.span9-->
                 </div>
             </div>
