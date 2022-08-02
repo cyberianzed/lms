@@ -80,7 +80,6 @@ require('dbconn.php');
                                 $row=$result->fetch_assoc();
 
                                 $name=$row['Name'];
-                                $category=$row['Category'];
                                 $email=$row['EmailId'];
                                 $mobno=$row['MobNo'];
                                 ?>    
@@ -90,8 +89,6 @@ require('dbconn.php');
                     				<p><b>Email ID: </b><?php echo $email ?></p>
                     				<br>
                     				<p><b>Roll No: </B><?php echo $rollno ?></p>
-                    				<br>
-                    				<p><b>Category: </b><?php echo $category ?></p>
                     				<br>
                     				<p><b>Mobile number: </b><?php echo $mobno ?></p>
                     				</b>
