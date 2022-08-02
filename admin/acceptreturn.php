@@ -5,14 +5,6 @@ $bookid=$_GET['id1'];
 $rollno=$_GET['id2'];
 $dues=$_GET['id3'];
 
-$sql="select Category from LMS.user where RollNo='$rollno'";
-$result=$conn->query($sql);
-$row=$result->fetch_assoc();
-
-$category=$row['Category'];
-
-
-
 
 $sql1="update LMS.record set Date_of_Return=curdate(),Dues='$dues' where BookId='$bookid' and RollNo='$rollno'";
  
