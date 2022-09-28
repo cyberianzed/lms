@@ -8,4 +8,4 @@ The main objective of the project is
 <img src="/assets/schema.jpg" alt="drawing" />&nbsp;&nbsp;
 
 # Project Report  
-Project Repoort can be viewed [**Here**]("/assets/report.pdf" )  
+Project Repoort can be viewed [**Here**](https://github.com/cyberianzed/lms/blob/master/assets/report.pdf)  
